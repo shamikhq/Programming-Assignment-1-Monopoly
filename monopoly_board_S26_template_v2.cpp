@@ -96,29 +96,21 @@ public:
     // Core A: Add a Space with Capacity Enforcement
     // -------------------------------
     bool addSpace(T value) {
-        // TODO:
-        // - If nodeCount == MAX_SPACES return false (do not corrupt list)
-        // - Create new node
-        // - If empty list: head=tail=player=new, new->next=head
-        // - Else: tail->next=new, tail=new, tail->next=head
-        // - nodeCount++
         if (nodeCount == MAX_SPACES) {
             return false;
         }
         if (nodeCount == 0) {
-            headNode = new Node<T>(value);
-            playerNode = headNode;
+            headNode = tailNode = playerNode = new Node<T>(value);
             headNode->nextNode = headNode;
-            nodeCount++;
-            return true;
+            cout << "addSpace to empty list" << endl;
         }
         else {
             tailNode->nextNode = new Node<T>(value);
             tailNode = tailNode->nextNode;
             tailNode->nextNode = headNode;
-            nodeCount++;
-            return true;
         }
+        nodeCount++;
+        return true;
     }
 
     // -------------------------------
@@ -130,8 +122,12 @@ public:
         // - Stop exactly when you reach MAX_SPACES
         // - Return number successfully added
         // - Do not corrupt pointers if capacity is exceeded
-        cout << "addMany unwritten" << endl;
-        return 0;
+        int count = 0;
+        while (nodeCount != MAX_SPACES) {
+            addSpace(values[count]);
+            count++;
+        }
+        return count;
     }
 
     // -------------------------------
@@ -267,17 +263,17 @@ int main() {
     // -------------------------------
     // Playable Traversal Loop
     // -------------------------------
-    for (int turn = 1; turn <= 10; turn++) {
-        int roll = rollDice2to12();
-        cout << "\nTurn " << turn << " | Rolled: " << roll << endl;
-
-        board.movePlayer(roll);
-
-        cout << "Board view from player (next 5 spaces):" << endl;
-        board.printFromPlayer(5);
-
-        cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
-    }
+    // for (int turn = 1; turn <= 10; turn++) {
+    //     int roll = rollDice2to12();
+    //     cout << "\nTurn " << turn << " | Rolled: " << roll << endl;
+    //
+    //     board.movePlayer(roll);
+    //
+    //     cout << "Board view from player (next 5 spaces):" << endl;
+    //     board.printFromPlayer(5);
+    //
+    //     cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
+    // }
 
     // -------------------------------
     // Advanced Feature Demos (students choose path)
