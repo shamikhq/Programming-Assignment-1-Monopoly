@@ -122,10 +122,11 @@ public:
         // - Stop exactly when you reach MAX_SPACES
         // - Return number successfully added
         // - Do not corrupt pointers if capacity is exceeded
-        int count = 0;
-        while (nodeCount != MAX_SPACES) {
-            addSpace(values[count]);
-            count++;
+        int count;
+        for (count = 0; count < values.size() && nodeCount < MAX_SPACES; count++) {
+            if (!addSpace(values[count])) {
+                break;
+            };
         }
         return count;
     }
@@ -258,7 +259,15 @@ int main() {
     //
     // NOTE: This starter calls addSpace once to show the intended API,
     // but your final submission should build a meaningful board.
-    board.addSpace(MonopolySpace("GO", "None", 0, 0));
+    //board.addSpace(MonopolySpace("GO", "None", 0, 0));
+    std::vector<MonopolySpace> values = {
+        MonopolySpace("GO", "None", 0, 0),
+        MonopolySpace("Mediterranean Avenue", "Brown", 60, 2),
+        MonopolySpace("Community Chest", "None", 0, 0),
+        MonopolySpace("Baltic Avenue", "Brown", 60, 4),
+        MonopolySpace("Income Tax", "None", 200, 0)
+     };
+    cout << board.addMany(values);
 
     // -------------------------------
     // Playable Traversal Loop
