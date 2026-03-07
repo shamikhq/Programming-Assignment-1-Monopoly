@@ -54,26 +54,26 @@ Each entry may be one of the following:
 ---
 
 ### Entry 3
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-04-06  
+**Entry Type:** Engineering Decision  
+**Task worked on:** Core C 
+**Issue or decision:** I decided to implement a for loop to effectively and efficiently implement the player moving along the board. 
+**Error message / symptom (if applicable):** N/A
+**What I tried:** I initially thought about doing a while loop, however, I realized I only need to check if the board is empty once.  
+**Fix / resolution (or final decision):** By implementing a for loop that assumes that nodeCount is always right, I can effectively and safely move the player. 
+**Commit(s):** I worked on Core C and D, testing and implementing both. 
 
 ---
 
 ### Entry 4
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-04-06  
+**Entry Type:** Bug Fix / Engineering Decision  
+**Task worked on:** Core D
+**Issue or decision:** I implemented Core D. 
+**Error message / symptom (if applicable):** Initially, the board wasn't printing correctly. 
+**What I tried:** Using the given playable traversal and the helper method countSpaces, I tested the Core D until I got it to work. 
+**Fix / resolution (or final decision):** I had an infinite loop in my countSpaces method, and once I fixed that everything else aligned. 
+**Commit(s):** I worked on Core C and D, testing and implementing both.
 
 ---
 

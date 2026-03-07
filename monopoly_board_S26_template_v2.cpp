@@ -36,7 +36,7 @@ public:
     }
 
     void print() {
-        cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
+        cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent << endl;
     }
 };
 
@@ -102,12 +102,13 @@ public:
         if (nodeCount == 0) {
             headNode = tailNode = playerNode = new Node<T>(value);
             headNode->nextNode = headNode;
-            cout << "addSpace to empty list" << endl;
+            //cout << "addSpace to empty list" << endl;
         }
         else {
             tailNode->nextNode = new Node<T>(value);
             tailNode = tailNode->nextNode;
             tailNode->nextNode = headNode;
+            //cout << "addSpace!" << endl;
         }
         nodeCount++;
         return true;
@@ -141,6 +142,14 @@ public:
         // - Detect and track passing GO:
         //   increment passGoCount when a move crosses from tail back to head
         // - Must handle empty list safely
+        if (nodeCount != 0) {
+            for (int i =0; i < steps; i++) {
+                playerNode = playerNode->nextNode;
+                if (playerNode == headNode) {
+                    passGoCount++;
+                }
+            }
+        }
         cout << "movePlayer unwritten" << endl;
     }
 
@@ -157,7 +166,16 @@ public:
         // - Must not infinite loop
         // - Must handle empty list
         // - Output must be deterministic and readable
-        cout << "printFromPlayer unwritten" << endl;
+        if (nodeCount != 0) {
+            Node<T>* temp = playerNode;
+            for (int i = 0; i < count; i++) {
+                temp->data.print();
+                if (temp->nextNode == headNode) {
+                    break;
+                }
+                temp = temp -> nextNode;
+            }
+        }
     }
 
     // Optional helper: print full board once (one full cycle)
@@ -214,10 +232,15 @@ public:
     // -------------------------------
     int countSpaces() {
         // TODO:
-        // - Must be O(n), traverse exactly once with correct stop condition
-        // - Do NOT rely on nodeCount for this method
-        cout << "countSpaces unwritten" << endl;
-        return 0;
+        int count = 1;
+        Node<T>* temp = headNode;
+        if (headNode == nullptr) {
+            return 0;
+        }
+        while(temp->nextNode != headNode) {
+            count++;
+            temp = temp->nextNode;
+        }
     }
 
     // -------------------------------
@@ -262,27 +285,62 @@ int main() {
     //board.addSpace(MonopolySpace("GO", "None", 0, 0));
     std::vector<MonopolySpace> values = {
         MonopolySpace("GO", "None", 0, 0),
-        MonopolySpace("Mediterranean Avenue", "Brown", 60, 2),
-        MonopolySpace("Community Chest", "None", 0, 0),
-        MonopolySpace("Baltic Avenue", "Brown", 60, 4),
-        MonopolySpace("Income Tax", "None", 200, 0)
+    MonopolySpace("Mediterranean Avenue", "Brown", 60, 2),
+    MonopolySpace("Community Chest", "None", 0, 0),
+    MonopolySpace("Baltic Avenue", "Brown", 60, 4),
+    MonopolySpace("Income Tax", "None", 200, 0),
+    MonopolySpace("Reading Railroad", "Railroad", 200, 25),
+    MonopolySpace("Oriental Avenue", "Light Blue", 100, 6),
+    MonopolySpace("Chance", "None", 0, 0),
+    MonopolySpace("Vermont Avenue", "Light Blue", 100, 6),
+    MonopolySpace("Connecticut Avenue", "Light Blue", 120, 8),
+    MonopolySpace("Jail", "None", 0, 0),
+    MonopolySpace("St. Charles Place", "Pink", 140, 10),
+    MonopolySpace("Electric Company", "Utility", 150, 0),
+    MonopolySpace("States Avenue", "Pink", 140, 10),
+    MonopolySpace("Virginia Avenue", "Pink", 160, 12),
+    MonopolySpace("Pennsylvania Railroad", "Railroad", 200, 25),
+    MonopolySpace("St. James Place", "Orange", 180, 14),
+    MonopolySpace("Community Chest", "None", 0, 0),
+    MonopolySpace("Tennessee Avenue", "Orange", 180, 14),
+    MonopolySpace("New York Avenue", "Orange", 200, 16),
+    MonopolySpace("Free Parking", "None", 0, 0),
+    MonopolySpace("Kentucky Avenue", "Red", 220, 18),
+    MonopolySpace("Chance", "None", 0, 0),
+    MonopolySpace("Indiana Avenue", "Red", 220, 18),
+    MonopolySpace("Illinois Avenue", "Red", 240, 20),
+    MonopolySpace("B&O Railroad", "Railroad", 200, 25),
+    MonopolySpace("Atlantic Avenue", "Yellow", 260, 22),
+    MonopolySpace("Ventnor Avenue", "Yellow", 260, 22),
+    MonopolySpace("Water Works", "Utility", 150, 0),
+    MonopolySpace("Marvin Gardens", "Yellow", 280, 24),
+    MonopolySpace("Go To Jail", "None", 0, 0),
+    MonopolySpace("Pacific Avenue", "Green", 300, 26),
+    MonopolySpace("North Carolina Avenue", "Green", 300, 26),
+    MonopolySpace("Community Chest", "None", 0, 0),
+    MonopolySpace("Pennsylvania Avenue", "Green", 320, 28),
+    MonopolySpace("Short Line Railroad", "Railroad", 200, 25),
+    MonopolySpace("Chance", "None", 0, 0),
+    MonopolySpace("Park Place", "Dark Blue", 350, 35),
+    MonopolySpace("Luxury Tax", "None", 100, 0),
+    MonopolySpace("Boardwalk", "Dark Blue", 400, 50)
      };
     cout << board.addMany(values);
 
     // -------------------------------
     // Playable Traversal Loop
     // -------------------------------
-    // for (int turn = 1; turn <= 10; turn++) {
-    //     int roll = rollDice2to12();
-    //     cout << "\nTurn " << turn << " | Rolled: " << roll << endl;
-    //
-    //     board.movePlayer(roll);
-    //
-    //     cout << "Board view from player (next 5 spaces):" << endl;
-    //     board.printFromPlayer(5);
-    //
-    //     cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
-    // }
+    cout << "Spaces in board: " << board.countSpaces() << endl;
+    for (int turn = 1; turn <= 10; turn++) {
+        int roll = rollDice2to12();
+        cout << "\nTurn " << turn << " | Rolled: " << roll << endl;
+        board.movePlayer(roll);
+
+        cout << "Board view from player (next 5 spaces):" << endl;
+        board.printFromPlayer(5);
+
+        cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
+    }
 
     // -------------------------------
     // Advanced Feature Demos (students choose path)
