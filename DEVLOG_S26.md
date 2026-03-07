@@ -85,7 +85,7 @@ Each entry may be one of the following:
 **Error message / symptom (if applicable):**  
 **What I tried:**  
 **Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Commit(s):**    
 
 ---
 

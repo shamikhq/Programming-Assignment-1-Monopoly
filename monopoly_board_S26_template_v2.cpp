@@ -38,6 +38,14 @@ public:
     void print() {
         cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent << endl;
     }
+
+    string getName() {
+        return propertyName;
+    }
+
+    string getColor() {
+        return propertyColor;
+    }
 };
 
 // -------------------------------
@@ -198,7 +206,23 @@ public:
         // - Maintain circular link tail->next=head
         // - If playerNode points to deleted node, move playerNode to a safe node
         // - nodeCount--
-        cout << "removeByName unwritten" << endl;
+        if (headNode->data.getName() == name) {
+            if (nodeCount == 1) {
+                headNode = tailNode = playerNode = nullptr;
+                nodeCount--;
+                return true;
+            }
+            headNode = headNode->nextNode;
+            nodeCount--;
+            return true;
+        }
+        Node<T>* temp = headNode;
+        for (int i = 0; i < nodeCount - 1; i++) {
+            if (temp-> nextNode-> data.getName() == name) {
+                temp-> nextNode = temp-> nextNode->nextNode;
+                nodeCount--;
+            }
+        }
         return false;
     }
 
