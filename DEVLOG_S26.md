@@ -85,16 +85,16 @@ Each entry may be one of the following:
 **Error message / symptom (if applicable):**  
 **What I tried:**  I initially implemented a for loop to loop through the board and attack edge cases one by one, however, that was honestly just a pain. 
 **Fix / resolution (or final decision):** By doing Option B, I'll be improving my understanding of pointers and memory allocation for a linked list. 
-**Commit(s):** I'm no longer doing  Advanced Option A.
+**Commit(s):** I'm no longer doing Advanced Option A.
 
 ---
 
 ### Entry 6
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
+**Date:** 2024-04-08  
+**Entry Type:** Engineering Decision  
+**Task worked on:** Advanced Option B
+**Issue or decision:** I wasn't sure if the method was working since it initially had no prints or anything. 
 **Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**What I tried:** I first tried printing in the mirrorBoard method, however, that just wasn't efficient or legible. 
+**Fix / resolution (or final decision):** I decided to implement the printBoard method to show what the board looks like before and after mirroring. 
+**Commit(s):** I've made a working version of Advanced Option B. 

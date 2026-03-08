@@ -189,7 +189,14 @@ public:
     // Optional helper: print full board once (one full cycle)
     void printBoardOnce() {
         // TODO:
-        // - Traverse exactly one full cycle and print each node
+        if (nodeCount > 0) {
+            Node<T>* temp = headNode;
+            for (int i = 0; i < MAX_SPACES; i++) {
+                cout << temp->data.getName() << endl;
+                temp = temp->nextNode;
+            }
+        }
+
         cout << "printBoardOnce unwritten" << endl;
     }
 
@@ -217,7 +224,8 @@ public:
     // Advanced Option B (Level 2): Mirror the Board (Circular Reversal)
     // -------------------------------
     void mirrorBoard() {
-        // TODO:
+
+// TODO:
         // - Reverse the direction of the circular list by reversing next pointers
         // - Preserve circular structure
         // - Correctly handle empty list and single-node list
@@ -238,7 +246,6 @@ public:
         headNode = prev;
         curr -> nextNode = headNode;
         tailNode = curr;
-
     }
 
     // -------------------------------
@@ -340,21 +347,25 @@ int main() {
     MonopolySpace("Boardwalk", "Dark Blue", 400, 50)
      };
     cout << board.addMany(values);
-
+    cout << "BEFORE: " << endl;
+    board.printBoardOnce();
+    board.mirrorBoard();
+    cout << "AFTER: " << endl;
+    board.printBoardOnce();
     // -------------------------------
     // Playable Traversal Loop
     // -------------------------------
-    cout << "Spaces in board: " << board.countSpaces() << endl;
-    for (int turn = 1; turn <= 10; turn++) {
-        int roll = rollDice2to12();
-        cout << "\nTurn " << turn << " | Rolled: " << roll << endl;
-        board.movePlayer(roll);
-
-        cout << "Board view from player (next 5 spaces):" << endl;
-        board.printFromPlayer(5);
-
-        cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
-    }
+    //cout << "Spaces in board: " << board.countSpaces() << endl;
+    // for (int turn = 1; turn <= 10; turn++) {
+    //     int roll = rollDice2to12();
+    //     cout << "\nTurn " << turn << " | Rolled: " << roll << endl;
+    //     board.movePlayer(roll);
+    //
+    //     cout << "Board view from player (next 5 spaces):" << endl;
+    //     board.printFromPlayer(5);
+    //
+    //     cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
+    // }
 
     // -------------------------------
     // Advanced Feature Demos (students choose path)
