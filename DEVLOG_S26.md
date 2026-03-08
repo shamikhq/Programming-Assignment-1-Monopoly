@@ -78,14 +78,14 @@ Each entry may be one of the following:
 ---
 
 ### Entry 5
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
+**Date:** 2024-04-07  
+**Entry Type:** Engineering Decision  
+**Task worked on:** Advanced Option A
+**Issue or decision:** I've decided to no longer do Advanced Option A, and instead do B because there is just too much to keep track of and too many edge cases.  
 **Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**    
+**What I tried:**  I initially implemented a for loop to loop through the board and attack edge cases one by one, however, that was honestly just a pain. 
+**Fix / resolution (or final decision):** By doing Option B, I'll be improving my understanding of pointers and memory allocation for a linked list. 
+**Commit(s):** I'm no longer doing  Advanced Option A.
 
 ---
 

@@ -197,32 +197,6 @@ public:
     // Advanced Option A (Level 1): removeByName
     // -------------------------------
     bool removeByName(string name) {
-        // TODO:
-        // - Delete FIRST matching node
-        // - Must handle:
-        //   - deleting head
-        //   - deleting tail
-        //   - deleting the only-node list
-        // - Maintain circular link tail->next=head
-        // - If playerNode points to deleted node, move playerNode to a safe node
-        // - nodeCount--
-        if (headNode->data.getName() == name) {
-            if (nodeCount == 1) {
-                headNode = tailNode = playerNode = nullptr;
-                nodeCount--;
-                return true;
-            }
-            headNode = headNode->nextNode;
-            nodeCount--;
-            return true;
-        }
-        Node<T>* temp = headNode;
-        for (int i = 0; i < nodeCount - 1; i++) {
-            if (temp-> nextNode-> data.getName() == name) {
-                temp-> nextNode = temp-> nextNode->nextNode;
-                nodeCount--;
-            }
-        }
         return false;
     }
 
