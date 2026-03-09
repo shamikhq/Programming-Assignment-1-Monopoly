@@ -158,7 +158,6 @@ public:
                 }
             }
         }
-        cout << "movePlayer unwritten" << endl;
     }
 
     int getPassGoCount() {
@@ -254,14 +253,15 @@ public:
     int countSpaces() {
         // TODO:
         int count = 1;
-        Node<T>* temp = headNode;
+        Node<T>* temp = headNode -> nextNode;
         if (headNode == nullptr) {
             return 0;
         }
-        while(temp->nextNode != headNode) {
+        while(temp != headNode) {
             count++;
             temp = temp->nextNode;
         }
+        return count;
     }
 
     // -------------------------------
@@ -272,7 +272,17 @@ public:
         // - Safely delete all nodes
         // - Tip: if tailNode exists, break the cycle first: tailNode->nextNode = nullptr
         // - Then delete like a normal singly linked list
-        cout << "clear unwritten" << endl;
+        if (nodeCount == 0) {
+            return;
+        }
+        Node<T>* prev = headNode;
+        Node<T>* curr = prev->nextNode;
+        tailNode->nextNode = nullptr;
+        while (curr != nullptr) {
+            delete prev;
+            prev = curr;
+            curr = curr -> nextNode;
+        }
     }
 };
 
@@ -299,7 +309,7 @@ int main() {
     // vector<MonopolySpace> spaces;
     // spaces.push_back(MonopolySpace("GO","None",0,0));
     // ...
-    // board.addMany(spaces);
+    //
     //
     // NOTE: This starter calls addSpace once to show the intended API,
     // but your final submission should build a meaningful board.
@@ -346,26 +356,29 @@ int main() {
     MonopolySpace("Luxury Tax", "None", 100, 0),
     MonopolySpace("Boardwalk", "Dark Blue", 400, 50)
      };
-    cout << board.addMany(values);
+    board.addMany(values);
+    // -------------------------------
+    // Check mirror/ clear board
+    // -------------------------------
     cout << "BEFORE: " << endl;
     board.printBoardOnce();
-    board.mirrorBoard();
+    board.clear();
     cout << "AFTER: " << endl;
     board.printBoardOnce();
     // -------------------------------
     // Playable Traversal Loop
     // -------------------------------
-    //cout << "Spaces in board: " << board.countSpaces() << endl;
-    // for (int turn = 1; turn <= 10; turn++) {
-    //     int roll = rollDice2to12();
-    //     cout << "\nTurn " << turn << " | Rolled: " << roll << endl;
-    //     board.movePlayer(roll);
+    // cout << "Spaces in board: " << board.countSpaces() << endl;
+    //  for (int turn = 1; turn <= 10; turn++) {
+    //      int roll = rollDice2to12();
+    //      cout << "\nTurn " << turn << " | Rolled: " << roll << endl;
+    //      board.movePlayer(roll);
     //
-    //     cout << "Board view from player (next 5 spaces):" << endl;
-    //     board.printFromPlayer(5);
+    //      cout << "Board view from player (next 5 spaces):" << endl;
+    //      board.printFromPlayer(5);
     //
-    //     cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
-    // }
+    //      cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
+    //  }
 
     // -------------------------------
     // Advanced Feature Demos (students choose path)
